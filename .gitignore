@@ -17,3 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+develop/Greek_Parliament_Proceedings_1989_2020.csv
+develop/resized_proceedings.csv
