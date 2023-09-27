@@ -11,9 +11,8 @@ if ($stream) {
             continue; 
         }
 
-        // Check if any of the required columns have null values
         if (count($record) < 3 || !$record[3] || !$record[4] || !$record[2]) {
-            continue; // Skip processing this row
+            continue;
         }
 
         $parliamentaryPeriod = $record[2];

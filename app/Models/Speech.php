@@ -12,5 +12,10 @@ class Speech extends Model
         'session_id',
         'speech_content',
     ];
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id');
+    }
     use HasFactory;
 }

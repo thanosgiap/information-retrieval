@@ -12,12 +12,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('master');
+    return view('welcome');
 });
-Route::get('/results', function () {
-    return view('search-results');
-})->name('results');
+//Route::get('/', 'App\Http\Controllers\HomeController@index')->name('welcome');
+Route::get('/search', 'App\Http\Controllers\HomeController@index')->name('search');
 
-Route::get('/search-results', 'App\Http\Controllers\SearchController@displaySearchResults')->name('search.results');
