@@ -17,7 +17,7 @@
             <h1 class="text-secondary" style="font-weight: 600;" >Greek Parliamentary Proceedings </h1>
         </div>
     </nav>
-    <main>
+    <main class="p-3">
         @yield('content')
     </main>
     @yield('script')
