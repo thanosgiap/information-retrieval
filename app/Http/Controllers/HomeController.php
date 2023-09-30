@@ -47,7 +47,7 @@ class HomeController extends Controller
         $searchIn = $request->input('search_in', 'speeches');
         $members = null;
         $speeches = null;
-        $party_members = null;
+        $membersByParty = null;
 
         if ($searchIn === 'speeches') {
             $speeches = Speech::where('speech_content', 'like', '%' . $searchQuery . '%')

@@ -23,6 +23,7 @@
         </div>
     </div>
     @if ($speeches)
+    @if(count($speeches) > 0)
     <table class="table table-responsive w-100">
         <thead>
             <tr>
@@ -50,8 +51,12 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <p>No results found.</p>
+    @endif
     {{ $speeches ? $speeches->appends(['search_in' => $searchIn, 'q' => $query])->links('pagination::bootstrap-5') : '' }}
     @elseif ($members)
+    @if(count($members) > 0)
     <table class="table table-responsive w-100">
         <thead>
             <tr>
@@ -74,11 +79,14 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <p>No results found.</p>
+    @endif
     {{ $members ? $members->appends(['search_in' => $searchIn, 'q' => $query])->links('pagination::bootstrap-5') : '' }}
     @elseif ($membersByParty)
 
     <div class="container">
-        @if (count($membersByParty) > 0)
+        @if (count($membersByParty) > 0 && $membersByParty)
         @foreach($membersByParty as $party => $partyMembers)
         @if ($loop->iteration % 3 === 1)
         <div class="row">
