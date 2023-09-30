@@ -75,30 +75,30 @@
         </tbody>
     </table>
     {{ $members ? $members->appends(['search_in' => $searchIn, 'q' => $query])->links('pagination::bootstrap-5') : '' }}
-    @elseif ($party_members)
-    <table class="table table-responsive w-100">
-        <thead>
-            <tr>
-                <th>Πολιτικό Κόμμα</th>
-                <th>Όνομα</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($party_members as $party_member)
-            <tr class="client-row position-relative mb-3">
-                <td class="p-3 w-50">
-                    {{ $party_member->political_party }}
-                </td>
+    @elseif ($membersByParty)
 
-                <td class="p-3 w-50">
-                    {{ $party_member->name }}
-                </td>
-
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{ $party_members ? $party_members->appends(['search_in' => $searchIn, 'q' => $query])->links('pagination::bootstrap-5') : '' }}
+    <div class="container">
+        @if (count($membersByParty) > 0)
+        @foreach($membersByParty as $party => $partyMembers)
+        @if ($loop->iteration % 3 === 1)
+        <div class="row">
+            @endif
+            <div class="col-md-4">
+                <h4>{{ $party }}</h4>
+                <ul>
+                    @foreach($partyMembers as $member)
+                    <li>{{ $member->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @if ($loop->iteration % 3 === 0 || $loop->last)
+        </div>
+        @endif
+        @endforeach
+        @else
+        <p>No results found.</p>
+        @endif
+    </div>
     @else
     <p>No results found.</p>
     @endif
