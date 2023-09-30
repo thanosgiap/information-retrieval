@@ -13,7 +13,7 @@
                 <div class="form-group" style="width: 400px;">
                     <label for="search_in" style="text-align: start;">Αναζήτηση βάση:</label>
                     <select name="search_in" id="search_in" class="form-control">
-                        <option value="speeches" {{ $searchIn === 'party' ? 'selected' : '' }}>Πολιτικό Κόμμα </option>
+                        <option value="party" {{ $searchIn === 'party' ? 'selected' : '' }}>Πολιτικό Κόμμα </option>
                         <option value="speeches" {{ $searchIn === 'speeches' ? 'selected' : '' }}>Ομιλίας</option>
                         <option value="names" {{ $searchIn === 'names' ? 'selected' : '' }}>Ονόματος βουλευτή</option>
                     </select>
@@ -84,20 +84,21 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($party_members as $member)
+            @foreach($party_members as $party_member)
             <tr class="client-row position-relative mb-3">
                 <td class="p-3 w-50">
-                    {{ $member->political_party }}
+                    {{ $party_member->political_party }}
                 </td>
 
                 <td class="p-3 w-50">
-                    {{ $member->name }}
+                    {{ $party_member->name }}
                 </td>
 
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $party_members ? $party_members->appends(['search_in' => $searchIn, 'q' => $query])->links('pagination::bootstrap-5') : '' }}
     @else
     <p>No results found.</p>
     @endif
